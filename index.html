@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expense Tracker</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- 🔥 PWA manifest + theme color -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#007bff">
+  <link rel="icon" href="icon-192.png">
+</head>
+<body>
+  <div class="container">
+
+    <!-- Login Section -->
+    <div id="loginSection">
+      <h1>Login</h1>
+      <input type="text" id="username" placeholder="Enter username">
+      <input type="password" id="pin" placeholder="Enter PIN">
+      <button id="loginBtn">Login</button>
+    </div>
+
+    <!-- Account Section -->
+    <div id="accountSection" style="display:none;">
+      <h1>Welcome, <span id="userDisplay"></span></h1>
+      <div class="balance">
+        <h2>Balance: <span id="balance">0</span> ₹</h2>
+      </div>
+      
+      <div class="form">
+        <input type="text" id="desc" placeholder="Description">
+        <input type="number" id="amount" placeholder="Amount">
+        <select id="type">
+          <option value="credit">Credit</option>
+          <option value="debit">Debit</option>
+        </select>
+        <button id="addBtn">Add</button>
+      </div>
+
+      <h3>Transaction History</h3>
+      <ul id="list"></ul>
+
+      <button id="logoutBtn">Logout</button>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+
+  <!-- 🔥 Register Service Worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('sw.js')
+          .then(reg => console.log('Service Worker registered', reg))
+          .catch(err => console.log('Service Worker registration failed', err));
+      });
+    }
+  </script>
+</body>
+</html>
